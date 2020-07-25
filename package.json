@@ -1,0 +1,28 @@
+{
+  "name": "stack_game",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build",
+    "build": " tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabadia/stack_game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sabadia/stack_game/issues"
+  },
+  "homepage": "https://github.com/sabadia/stack_game#readme",
+  "devDependencies": {
+    "@types/jquery": "^3.5.0",
+    "@types/node": "^14.0.26",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
