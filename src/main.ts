@@ -10,14 +10,16 @@ $(document).ready(function () {
 
 function draw() {
   let canvas : CanvasElement = new CanvasElement();
-  canvas.createOval(150, 250);
+  let xDifference = 0;
+  let yDifference = 0; 
+  canvas.createOval(400, 515);
  
-  canvas.createFixedSquare(150, 450);
+  canvas.createFixedSquare(420, 570);
 }
 class CanvasElement {
   
-  ovalRadiusX: number = 35;
-  ovalRadiusY: number = 105;
+  ovalRadiusX: number = 15;
+  ovalRadiusY: number = 50;
   rectangleWidth: number = 60;
   rectangleHeight: number = 60;
   bufferArea : number = 5;
@@ -32,15 +34,13 @@ class CanvasElement {
 
     if (canvas.getContext) {
       let context = canvas.getContext("2d");
-      let centerX = canvas.width / 2;
-      let centerY = canvas.height / 2;
       let width = this.rectangleWidth;
       let height = this.rectangleHeight;
       if (context != null) {
         context.beginPath();
         // context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
 
-        context.rect(centerX, centerY, width, height);
+        context.rect(0, 0, width, height);
 
         context.fillStyle = fillColor;
         context.fill();

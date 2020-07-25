@@ -6,13 +6,15 @@ $(document).ready(function () {
 });
 function draw() {
     var canvas = new CanvasElement();
-    canvas.createOval(150, 250);
-    canvas.createFixedSquare(150, 450);
+    var xDifference = 0;
+    var yDifference = 0;
+    canvas.createOval(400, 515);
+    canvas.createFixedSquare(420, 570);
 }
 var CanvasElement = /** @class */ (function () {
     function CanvasElement() {
-        this.ovalRadiusX = 35;
-        this.ovalRadiusY = 105;
+        this.ovalRadiusX = 15;
+        this.ovalRadiusY = 50;
         this.rectangleWidth = 60;
         this.rectangleHeight = 60;
         this.bufferArea = 5;
@@ -28,14 +30,12 @@ var CanvasElement = /** @class */ (function () {
         canvas.style.position = "absolute";
         if (canvas.getContext) {
             var context = canvas.getContext("2d");
-            var centerX = canvas.width / 2;
-            var centerY = canvas.height / 2;
             var width = this.rectangleWidth;
             var height = this.rectangleHeight;
             if (context != null) {
                 context.beginPath();
                 // context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-                context.rect(centerX, centerY, width, height);
+                context.rect(0, 0, width, height);
                 context.fillStyle = fillColor;
                 context.fill();
                 context.strokeStyle = strokeColor;
