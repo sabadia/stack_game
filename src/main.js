@@ -1,9 +1,9 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 $(document).ready(function () {
     $("h1").css({
         color: "black",
-        border: "2px solid green",
+        border: "2px solid green"
     });
 });
 var ovalRadiusX = 35;
