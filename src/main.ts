@@ -14,7 +14,7 @@ function draw() {
   let yDifference = 0; 
   canvas.createOval(400, 515);
  
-  canvas.createFixedSquare(420, 570);
+  canvas.createFixedSquare(420, 565);
 }
 class CanvasElement {
   
@@ -38,10 +38,7 @@ class CanvasElement {
       let height = this.rectangleHeight;
       if (context != null) {
         context.beginPath();
-        // context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-
         context.rect(0, 0, width, height);
-
         context.fillStyle = fillColor;
         context.fill();
         context.strokeStyle = strokeColor;

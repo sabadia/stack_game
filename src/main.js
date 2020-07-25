@@ -9,7 +9,7 @@ function draw() {
     var xDifference = 0;
     var yDifference = 0;
     canvas.createOval(400, 515);
-    canvas.createFixedSquare(420, 570);
+    canvas.createFixedSquare(420, 565);
 }
 var CanvasElement = /** @class */ (function () {
     function CanvasElement() {
@@ -34,7 +34,6 @@ var CanvasElement = /** @class */ (function () {
             var height = this.rectangleHeight;
             if (context != null) {
                 context.beginPath();
-                // context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
                 context.rect(0, 0, width, height);
                 context.fillStyle = fillColor;
                 context.fill();
