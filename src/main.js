@@ -11,24 +11,24 @@ function draw() {
     initializeBoard(canvas, xDifference, yDifference);
 }
 function initializeBoard(canvas, xDifference, yDifference) {
-    var yellowBody = "#DCC06C";
+    var yellowBody = "#FFF2CC";
     var yellowBorder = "#DCC06C";
-    var redBody = "#DCC06C";
-    var redBorder = "#DCC06C";
-    var blueBody = "#DCC06C";
-    var blueBorder = "#DCC06C";
-    canvas.createOval(400, 515);
-    canvas.createOval(400, 515 - yDifference);
-    canvas.createOval(400 + xDifference, 515);
-    canvas.createOval(400 + xDifference, 515 - yDifference);
-    canvas.createOval(400 + xDifference, 515 - 2 * yDifference);
-    canvas.createOval(400 + xDifference, 515 - 3 * yDifference);
-    canvas.createOval(400 + 2 * xDifference, 515);
-    canvas.createOval(400 + 2 * xDifference, 515 - yDifference);
-    canvas.createOval(400 + 2 * xDifference, 515 - 2 * yDifference);
-    canvas.createFixedSquare(420, 565);
-    canvas.createFixedSquare(420 + xDifference, 565);
-    canvas.createFixedSquare(420 + 2 * xDifference, 565);
+    var redBody = "#F8CECC";
+    var redBorder = "#B85450";
+    var blueBody = "#DAE8FC";
+    var blueBorder = "#829FCA";
+    canvas.createOval(400, 515, yellowBody, yellowBorder);
+    canvas.createOval(400, 515 - yDifference, yellowBody, yellowBorder);
+    canvas.createOval(400 + xDifference, 515, redBody, redBorder);
+    canvas.createOval(400 + xDifference, 515 - yDifference, redBody, redBorder);
+    canvas.createOval(400 + xDifference, 515 - 2 * yDifference, redBody, redBorder);
+    canvas.createOval(400 + xDifference, 515 - 3 * yDifference, yellowBody, yellowBorder);
+    canvas.createOval(400 + 2 * xDifference, 515, blueBody, blueBorder);
+    canvas.createOval(400 + 2 * xDifference, 515 - yDifference, blueBody, blueBorder);
+    canvas.createOval(400 + 2 * xDifference, 515 - 2 * yDifference, blueBody, blueBorder);
+    canvas.createFixedSquare(420, 565, yellowBody, yellowBorder);
+    canvas.createFixedSquare(420 + xDifference, 565, redBody, redBorder);
+    canvas.createFixedSquare(420 + 2 * xDifference, 565, blueBody, blueBorder);
 }
 var CanvasElement = /** @class */ (function () {
     function CanvasElement() {

@@ -17,26 +17,26 @@ function draw() {
 }
 
 function initializeBoard(canvas:CanvasElement, xDifference:number,yDifference:number){
-  let yellowBody:string = "#DCC06C";
+  let yellowBody:string = "#FFF2CC";
   let yellowBorder:string = "#DCC06C";
-  let redBody:string = "#DCC06C";
-  let redBorder:string = "#DCC06C";
-  let blueBody:string = "#DCC06C";
-  let blueBorder:string = "#DCC06C";
+  let redBody:string = "#F8CECC";
+  let redBorder:string = "#B85450";
+  let blueBody:string = "#DAE8FC";
+  let blueBorder:string = "#829FCA";
   
-  canvas.createOval(400, 515 );
-  canvas.createOval(400, 515 - yDifference);
-  canvas.createOval(400 + xDifference, 515);
-  canvas.createOval(400 + xDifference, 515-yDifference);
-  canvas.createOval(400 + xDifference, 515-2*yDifference);
-  canvas.createOval(400 + xDifference, 515-3*yDifference);
-  canvas.createOval(400 + 2*xDifference, 515);
-  canvas.createOval(400 + 2*xDifference, 515-yDifference);
-  canvas.createOval(400 + 2*xDifference, 515-2*yDifference);
+  canvas.createOval(400, 515 , yellowBody, yellowBorder );
+  canvas.createOval(400, 515 - yDifference, yellowBody, yellowBorder);
+  canvas.createOval(400 + xDifference, 515, redBody, redBorder);
+  canvas.createOval(400 + xDifference, 515-yDifference, redBody, redBorder);
+  canvas.createOval(400 + xDifference, 515-2*yDifference, redBody, redBorder);
+  canvas.createOval(400 + xDifference, 515-3*yDifference, yellowBody, yellowBorder);
+  canvas.createOval(400 + 2*xDifference, 515, blueBody , blueBorder);
+  canvas.createOval(400 + 2*xDifference, 515-yDifference, blueBody , blueBorder);
+  canvas.createOval(400 + 2*xDifference, 515-2*yDifference, blueBody , blueBorder);
 
-  canvas.createFixedSquare(420, 565);
-  canvas.createFixedSquare(420+xDifference, 565);
-  canvas.createFixedSquare(420+2*xDifference, 565);
+  canvas.createFixedSquare(420, 565, yellowBody, yellowBorder);
+  canvas.createFixedSquare(420+xDifference, 565, redBody, redBorder);
+  canvas.createFixedSquare(420+2*xDifference, 565, blueBody , blueBorder);
 }
 class CanvasElement {
   
