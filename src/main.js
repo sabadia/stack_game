@@ -6,10 +6,29 @@ $(document).ready(function () {
 });
 function draw() {
     var canvas = new CanvasElement();
-    var xDifference = 0;
-    var yDifference = 0;
+    var xDifference = 126;
+    var yDifference = 30;
+    initializeBoard(canvas, xDifference, yDifference);
+}
+function initializeBoard(canvas, xDifference, yDifference) {
+    var yellowBody = "#DCC06C";
+    var yellowBorder = "#DCC06C";
+    var redBody = "#DCC06C";
+    var redBorder = "#DCC06C";
+    var blueBody = "#DCC06C";
+    var blueBorder = "#DCC06C";
     canvas.createOval(400, 515);
+    canvas.createOval(400, 515 - yDifference);
+    canvas.createOval(400 + xDifference, 515);
+    canvas.createOval(400 + xDifference, 515 - yDifference);
+    canvas.createOval(400 + xDifference, 515 - 2 * yDifference);
+    canvas.createOval(400 + xDifference, 515 - 3 * yDifference);
+    canvas.createOval(400 + 2 * xDifference, 515);
+    canvas.createOval(400 + 2 * xDifference, 515 - yDifference);
+    canvas.createOval(400 + 2 * xDifference, 515 - 2 * yDifference);
     canvas.createFixedSquare(420, 565);
+    canvas.createFixedSquare(420 + xDifference, 565);
+    canvas.createFixedSquare(420 + 2 * xDifference, 565);
 }
 var CanvasElement = /** @class */ (function () {
     function CanvasElement() {

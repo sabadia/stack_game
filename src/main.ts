@@ -8,13 +8,35 @@ $(document).ready(function () {
 
 
 
+
 function draw() {
   let canvas : CanvasElement = new CanvasElement();
-  let xDifference = 0;
-  let yDifference = 0; 
-  canvas.createOval(400, 515);
- 
+  let xDifference = 126;
+  let yDifference = 30; 
+  initializeBoard( canvas, xDifference,yDifference);
+}
+
+function initializeBoard(canvas:CanvasElement, xDifference:number,yDifference:number){
+  let yellowBody:string = "#DCC06C";
+  let yellowBorder:string = "#DCC06C";
+  let redBody:string = "#DCC06C";
+  let redBorder:string = "#DCC06C";
+  let blueBody:string = "#DCC06C";
+  let blueBorder:string = "#DCC06C";
+  
+  canvas.createOval(400, 515 );
+  canvas.createOval(400, 515 - yDifference);
+  canvas.createOval(400 + xDifference, 515);
+  canvas.createOval(400 + xDifference, 515-yDifference);
+  canvas.createOval(400 + xDifference, 515-2*yDifference);
+  canvas.createOval(400 + xDifference, 515-3*yDifference);
+  canvas.createOval(400 + 2*xDifference, 515);
+  canvas.createOval(400 + 2*xDifference, 515-yDifference);
+  canvas.createOval(400 + 2*xDifference, 515-2*yDifference);
+
   canvas.createFixedSquare(420, 565);
+  canvas.createFixedSquare(420+xDifference, 565);
+  canvas.createFixedSquare(420+2*xDifference, 565);
 }
 class CanvasElement {
   
