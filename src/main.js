@@ -5,26 +5,27 @@ $(document).ready(function () {
     });
 });
 function draw() {
-    var canvas = new CanvasElement(document.createElement('canvas'));
-    canvas.createOval(550, 550);
-    // canvas.createFixedSquare(550, 750);
+    var canvas = new CanvasElement();
+    canvas.createOval(150, 250);
+    canvas.createFixedSquare(150, 450);
 }
 var CanvasElement = /** @class */ (function () {
-    function CanvasElement(canvas) {
-        this.canvas = document.createElement('canvas');
+    function CanvasElement() {
         this.ovalRadiusX = 35;
         this.ovalRadiusY = 105;
         this.rectangleWidth = 60;
         this.rectangleHeight = 60;
         this.bufferArea = 5;
-        this.canvas = canvas;
     }
     CanvasElement.prototype.createFixedSquare = function (positionX, positionY, fillColor, strokeColor) {
         if (fillColor === void 0) { fillColor = "orange"; }
         if (strokeColor === void 0) { strokeColor = "red"; }
-        var canvas = this.canvas;
-        canvas.width = positionX;
-        canvas.height = positionY;
+        var canvas = document.createElement('canvas');
+        canvas.width = this.rectangleWidth;
+        canvas.height = this.rectangleHeight;
+        canvas.style.left = positionX + "px";
+        canvas.style.top = positionY + "px";
+        canvas.style.position = "absolute";
         if (canvas.getContext) {
             var context = canvas.getContext("2d");
             var centerX = canvas.width / 2;
@@ -46,11 +47,11 @@ var CanvasElement = /** @class */ (function () {
     CanvasElement.prototype.createOval = function (positionX, positionY, fillColor, strokeColor) {
         if (fillColor === void 0) { fillColor = "orange"; }
         if (strokeColor === void 0) { strokeColor = "red"; }
-        var canvas = this.canvas;
-        canvas.width = this.ovalRadiusY * 2 + 10;
-        canvas.height = this.ovalRadiusX * 2 + 10;
-        canvas.style.left = "100px";
-        canvas.style.top = "100px";
+        var canvas = document.createElement('canvas');
+        canvas.width = this.ovalRadiusY * 2 + this.bufferArea;
+        canvas.height = this.ovalRadiusX * 2 + this.bufferArea;
+        canvas.style.left = positionX + "px";
+        canvas.style.top = positionY + "px";
         canvas.style.position = "absolute";
         if (canvas.getContext) {
             var context = canvas.getContext("2d");

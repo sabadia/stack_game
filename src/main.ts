@@ -9,24 +9,26 @@ $(document).ready(function () {
 
 
 function draw() {
-  let canvas : CanvasElement = new CanvasElement(document.createElement('canvas') as HTMLCanvasElement);
-  canvas.createOval(550, 550);
-  // canvas.createFixedSquare(550, 750);
+  let canvas : CanvasElement = new CanvasElement();
+  canvas.createOval(150, 250);
+ 
+  canvas.createFixedSquare(150, 450);
 }
 class CanvasElement {
-  public canvas: HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement;
+  
   ovalRadiusX: number = 35;
   ovalRadiusY: number = 105;
   rectangleWidth: number = 60;
   rectangleHeight: number = 60;
   bufferArea : number = 5;
-   constructor(canvas: HTMLCanvasElement){
-     this.canvas = canvas;
-   }
+
   createFixedSquare(positionX: number, positionY: number, fillColor: string = "orange", strokeColor: string = "red") {
-    let canvas = this.canvas;
-    canvas.width = positionX;
-    canvas.height = positionY;
+    let canvas: HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement
+    canvas.width = this.rectangleWidth;
+    canvas.height = this.rectangleHeight;
+    canvas.style.left = positionX + "px";
+    canvas.style.top = positionY + "px";
+    canvas.style.position = "absolute";
 
     if (canvas.getContext) {
       let context = canvas.getContext("2d");
@@ -50,11 +52,11 @@ class CanvasElement {
   }
 
   createOval(positionX: number, positionY: number, fillColor: string = "orange", strokeColor: string = "red") {
-    let canvas = this.canvas;
-    canvas.width = this.ovalRadiusY*2+10;
-    canvas.height = this.ovalRadiusX*2+10;
-    canvas.style.left = "100px";
-    canvas.style.top = "100px";
+    let canvas: HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement
+    canvas.width = this.ovalRadiusY*2+this.bufferArea;
+    canvas.height = this.ovalRadiusX*2+this.bufferArea;
+    canvas.style.left = positionX + "px";
+    canvas.style.top = positionY + "px";
     canvas.style.position = "absolute";
     if (canvas.getContext) {
       let context = canvas.getContext("2d");
