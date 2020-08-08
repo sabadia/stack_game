@@ -12,7 +12,7 @@ function draw() {
   let yDifference = 30;
   initializeBoard(canvas, xDifference, yDifference);
 }
-
+let y1 , y2, y3 , r1, r2, r3, b1, b2, b3;
 function initializeBoard(canvas: CanvasElement, xDifference: number, yDifference: number) {
   let yellowBody: string = "#FFF2CC";
   let yellowBorder: string = "#DCC06C";
@@ -20,16 +20,17 @@ function initializeBoard(canvas: CanvasElement, xDifference: number, yDifference
   let redBorder: string = "#B85450";
   let blueBody: string = "#DAE8FC";
   let blueBorder: string = "#829FCA";
+  
 
-  canvas.createOval(400, 515, yellowBody, yellowBorder);
-  canvas.createOval(400, 515 - yDifference, yellowBody, yellowBorder);
-  canvas.createOval(400 + xDifference, 515, redBody, redBorder);
-  canvas.createOval(400 + xDifference, 515 - yDifference, redBody, redBorder);
-  canvas.createOval(400 + xDifference, 515 - 2 * yDifference, redBody, redBorder);
-  canvas.createOval(400 + xDifference, 515 - 3 * yDifference, yellowBody, yellowBorder);
-  canvas.createOval(400 + 2 * xDifference, 515, blueBody, blueBorder);
-  canvas.createOval(400 + 2 * xDifference, 515 - yDifference, blueBody, blueBorder);
-  canvas.createOval(400 + 2 * xDifference, 515 - 2 * yDifference, blueBody, blueBorder);
+  y1 = canvas.createOval(400, 515, yellowBody, yellowBorder , "y1");
+  y2 = canvas.createOval(400, 515 - yDifference, yellowBody, yellowBorder, "y2");
+  r1 = canvas.createOval(400 + xDifference, 515, redBody, redBorder, "r1");
+  r2 = canvas.createOval(400 + xDifference, 515 - yDifference, redBody, redBorder,"r2");
+  r3 = canvas.createOval(400 + xDifference, 515 - 2 * yDifference, redBody, redBorder,"r3");
+  y3 = canvas.createOval(400 + xDifference, 515 - 3 * yDifference, yellowBody, yellowBorder,"y3");
+  b1 = canvas.createOval(400 + 2 * xDifference, 515, blueBody, blueBorder,"b1");
+  b2 = canvas.createOval(400 + 2 * xDifference, 515 - yDifference, blueBody, blueBorder,"b2");
+  b3 = canvas.createOval(400 + 2 * xDifference, 515 - 2 * yDifference, blueBody, blueBorder,"b3");
 
   canvas.createFixedSquare(420, 565, yellowBody, yellowBorder);
   canvas.createFixedSquare(420 + xDifference, 565, redBody, redBorder);
@@ -43,7 +44,7 @@ class CanvasElement {
   rectangleHeight: number = 60;
   bufferArea: number = 5;
 
-  createFixedSquare(positionX: number, positionY: number, fillColor: string = "orange", strokeColor: string = "red") {
+  createFixedSquare(positionX: number, positionY: number, fillColor: string = "orange", strokeColor: string = "red" ) {
     let canvas: HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement
     canvas.width = this.rectangleWidth;
     canvas.height = this.rectangleHeight;
@@ -67,8 +68,9 @@ class CanvasElement {
     }
   }
 
-  createOval(positionX: number, positionY: number, fillColor: string = "orange", strokeColor: string = "red") {
+  createOval(positionX: number, positionY: number, fillColor: string = "orange", strokeColor: string = "red" , id: string ) {
     let canvas: HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement
+    canvas.id = id;
     canvas.width = this.ovalRadiusY * 2 + this.bufferArea;
     canvas.height = this.ovalRadiusX * 2 + this.bufferArea;
     canvas.style.left = positionX + "px";
