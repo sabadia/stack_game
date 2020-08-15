@@ -1,18 +1,54 @@
 
-$(document).ready(function () {
-  $("h1").css({
-    color: "black",
-    border: "2px solid green",
-  });
-});
 
 function draw() {
   let canvas: CanvasElement = new CanvasElement();
   let xDifference = 126;
   let yDifference = 30;
   initializeBoard(canvas, xDifference, yDifference);
+  makeAllItemsDraggable();
+  droppableWithDragebles();
+  
 }
+
+
+ function droppableWithDragebles() {
+
+  $( "#yD" ).droppable({
+
+    drop: function (event:any, ui:any) {
+        // here $(this) is droppable where the drop occured.
+        let dragID:string = ui.draggable.attr('id');
+        console.log(dragID);
+        console.log("\n");
+       
+    }
+  });
+
+  // $( "#yD, #rD, #bD" ).droppable({
+  //   drop: function( vent: any, ui: any ) {
+  //     $( this )
+  //       .addClass( "ui-state-highlight" )
+  //       .find( "p" );
+  //   }
+  // });
+
+  
+
+} 
+
+function makeAllItemsDraggable(){
+  
+  for(let i=1 ; i<=3 ; i++){
+    let id: string = "#y" + i +", #b" + i + ", #r" + i;
+    $( function() {
+      $(id).draggable({ snap: true , revert: "invalid"});
+    } );
+  }
+  
+} 
+
 let y1 , y2, y3 , r1, r2, r3, b1, b2, b3;
+
 function initializeBoard(canvas: CanvasElement, xDifference: number, yDifference: number) {
   let yellowBody: string = "#FFF2CC";
   let yellowBorder: string = "#DCC06C";
@@ -21,6 +57,9 @@ function initializeBoard(canvas: CanvasElement, xDifference: number, yDifference
   let blueBody: string = "#DAE8FC";
   let blueBorder: string = "#829FCA";
   
+  canvas.createDrppableArea(400, 90, yellowBody, "yD");
+  canvas.createDrppableArea(400 + xDifference, 90, redBody, "rD");
+  canvas.createDrppableArea(400 + 2 * xDifference, 90, blueBody, "bD");
 
   y1 = canvas.createOval(400, 515, yellowBody, yellowBorder , "y1");
   y2 = canvas.createOval(400, 515 - yDifference, yellowBody, yellowBorder, "y2");
@@ -35,6 +74,8 @@ function initializeBoard(canvas: CanvasElement, xDifference: number, yDifference
   canvas.createFixedSquare(420, 565, yellowBody, yellowBorder);
   canvas.createFixedSquare(420 + xDifference, 565, redBody, redBorder);
   canvas.createFixedSquare(420 + 2 * xDifference, 565, blueBody, blueBorder);
+
+  
 }
 class CanvasElement {
 
@@ -42,6 +83,7 @@ class CanvasElement {
   ovalRadiusY: number = 50;
   rectangleWidth: number = 60;
   rectangleHeight: number = 60;
+  droppableHeight: number = 460;
   bufferArea: number = 5;
 
   createFixedSquare(positionX: number, positionY: number, fillColor: string = "orange", strokeColor: string = "red" ) {
@@ -91,6 +133,29 @@ class CanvasElement {
         context.fillStyle = fillColor;
         context.fill();
         context.strokeStyle = strokeColor;
+        context.stroke();
+        document.body.appendChild(canvas);
+      }
+    }
+  }
+
+  createDrppableArea(positionX: number, positionY: number, strokeColor: string = "black" , id:string ) {
+    let canvas: HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement
+    canvas.id = id;
+    canvas.width = this.ovalRadiusY*2+5;
+    canvas.height = this.droppableHeight;
+    canvas.style.left = positionX + "px";
+    canvas.style.top = positionY + "px";
+    canvas.style.position = "absolute";
+
+    if (canvas.getContext) {
+      let context = canvas.getContext("2d");
+      let width = this.ovalRadiusY*2+5;
+      let height = this.droppableHeight;
+      if (context != null) {
+        context.beginPath();
+        context.rect(0, 0, width, height);
+        context.strokeStyle = "#000";
         context.stroke();
         document.body.appendChild(canvas);
       }
