@@ -1,18 +1,41 @@
 import { Config, ConfigInterface } from "./Global";
 import { Common } from "../common/common";
-export class Circle extends Config {
+import $ from "jquery";
+import "jquery-ui-dist/jquery-ui";
+export class Circle {
+  config: Config;
   constructor(config: ConfigInterface) {
-    super(config);
+    this.config = new Config(config);
+    this.init();
   }
-  init(): void {
+  private init(): void {
     const style = {
-      width: this.width,
-      height: this.height,
-      borderRadius: '50%',
-      backgroundColor: this.background,
-      
+      width: this.config.width,
+      height: this.config.height,
+      borderRadius: "50%",
+      backgroundColor: this.config.color,
     };
-    Common.createHTMLElement("div", style,this._id).appendTo(`#${this._parentId}`);
+    const newCircle = Common.createHTMLElement(
+      "div",
+      style,
+      this.config._id,
+      "circle"
+    );
+    newCircle.draggable({
+      cursor: "move",
+      revert: "invalid",
+      disabled: true,
+    });
+    newCircle.appendTo(`#${this.config._parentId}`);
   }
-  
+  enableDragable() {
+    $(`#${this.config._id}`).draggable({
+      disabled: false,
+    });
+  }
+  disableDragable() {
+    $(`#${this.config._id}`).draggable({
+      disabled: true,
+    });
+  }
 }

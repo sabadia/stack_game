@@ -12,10 +12,11 @@ export class Common {
     tag: string,
     style?: any,
     id?: string,
+    classes?: string,
     innerHtml: string = ""
   ) {
     const element = $(
-      `<${tag} id='${id || Common.getNewGuid()}'>${innerHtml}</${tag}>`
+      `<${tag} id='${id || Common.getNewGuid()}' class='${classes}'>${innerHtml}</${tag}>`
     );
     if (style) {
       element.css(style);

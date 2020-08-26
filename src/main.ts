@@ -16,7 +16,23 @@ function init() {
       _parentId: mainContainer.attr("id"),
       height: "100%",
       width: "100%",
-      NumberOfStack: 3,
+      stacksConfigList: [
+        {
+          width: "140px",
+          height: "600px",
+          // color: "red",
+        },
+        {
+          width: "140px",
+          height: "600px",
+          // color: "green",
+        },
+        {
+          width: "140px",
+          height: "600px",
+          // color: "blue",
+        },
+      ],
     };
     new Board(gameBoardConfig);
   });
