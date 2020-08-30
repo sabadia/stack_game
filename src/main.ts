@@ -34,7 +34,20 @@ function init() {
         },
       ],
     };
-    new Board(gameBoardConfig);
+    const style = {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "white",
+      width: "100%",
+      height: "100%",
+    };
+    Common.createHTMLElement("button", style, "", "new-game", "New Game").appendTo(
+      `#${mainContainer.attr("id")}`
+    );
+    $(".new-game").click(() => new Board(gameBoardConfig));
+    
   });
 }
 

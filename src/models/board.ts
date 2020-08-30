@@ -9,13 +9,13 @@ export interface BoardInterface extends ConfigInterface {
 }
 export class Board implements ObjectHandler<Stack> {
   private config: Config;
+  private stacksConfigList: ConfigInterface[];
   stackList: Stack[] = [];
   private circleList: Circle[] = [];
   constructor(config: BoardInterface) {
     this.config = new Config(config);
+    this.stacksConfigList = config.stacksConfigList;
     this.init();
-    this.push(config.stacksConfigList);
-    this.initOnCircleDropListener();
   }
   push(configList?: ConfigInterface[]) {
     configList = configList || [
@@ -36,6 +36,9 @@ export class Board implements ObjectHandler<Stack> {
     throw new Error("Method not implemented.");
   }
   private init(): void {
+    $(`#${this.config._parentId}`).empty();
+    this.circleList = [];
+    this.stackList = [];
     const style = {
       display: "flex",
       alignItems: "center",
@@ -47,6 +50,8 @@ export class Board implements ObjectHandler<Stack> {
     Common.createHTMLElement("div", style, this.config._id, "board").appendTo(
       `#${this.config._parentId}`
     );
+    this.push(this.stacksConfigList);
+    this.initOnCircleDropListener();
   }
 
   private initCirclesToStackList() {
@@ -117,7 +122,9 @@ export class Board implements ObjectHandler<Stack> {
           if (revert) {
             const stack = this.getStackById(circle.config._parentId);
             stack.pop(circle.config._id);
-            console.log(stack.CircleList);
+            if (this.checkisSolved()) {
+              this.sucessPageInit();
+            }
           } else {
           }
         },
@@ -128,7 +135,6 @@ export class Board implements ObjectHandler<Stack> {
     this.stackList.forEach((stack) => {
       $(`#${stack.config._id}`).on("drop", (event, ui) => {
         const circle = this.getCircleById(ui.draggable.attr("id"));
-        console.log("working,");
         ui.draggable.remove();
         stack.push([
           {
@@ -138,9 +144,46 @@ export class Board implements ObjectHandler<Stack> {
             width: circle.config.width,
           },
         ]);
-        console.log(stack.CircleList);
         this.initCircleListWithDragStopListener();
       });
     });
+  }
+  checkisSolved() {
+    for (let i = 0; i < this.stackList.length; i++) {
+      if (!this.stackList[i].checkIsSolved(this.stackList.length)) {
+        return false;
+      }
+    }
+    return true;
+  }
+  sucessPageInit() {
+    $(`#${this.config._parentId}`).empty();
+    const style = {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: this.config.color,
+      width: this.config.width,
+      height: this.config.height,
+    };
+    const board = Common.createHTMLElement(
+      "div",
+      style,
+      this.config._id,
+      "board"
+    );
+    board.appendTo(`#${this.config._parentId}`);
+    Common.createHTMLElement(
+      "h1",
+      "",
+      "",
+      "success-message",
+      "Success"
+    ).appendTo(`#${this.config._id}`);
+    Common.createHTMLElement("button", "", "", "new-game", "New Game").appendTo(
+      `#${this.config._id}`
+    );
+    $(".new-game").click(() => this.init());
   }
 }

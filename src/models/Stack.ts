@@ -68,4 +68,18 @@ export class Stack implements ObjectHandler<Circle> {
       this.CircleList[this.CircleList.length - 1].enableDragable();
     }
   }
+
+  checkIsSolved(length: number) {
+    let result: boolean;
+    if (length === this.CircleList.length) {
+      for (let i = 0; i < this.CircleList.length; i++) {
+        if (this.CircleList[i].config.color != this.config.color) {
+          return false;
+        }
+      }
+    } else {
+      return false;
+    }
+    return true;
+  }
 }
