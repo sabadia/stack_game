@@ -43,11 +43,14 @@ function init() {
       width: "100%",
       height: "100%",
     };
-    Common.createHTMLElement("button", style, "", "new-game", "New Game").appendTo(
-      `#${mainContainer.attr("id")}`
-    );
+    Common.createHTMLElement(
+      "button",
+      style,
+      "",
+      "new-game",
+      "New Game"
+    ).appendTo(`#${mainContainer.attr("id")}`);
     $(".new-game").click(() => new Board(gameBoardConfig));
-    
   });
 }
 
